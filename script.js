@@ -10,27 +10,33 @@ const setHeaderState = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 12);
 };
 
-setHeaderState();
-window.addEventListener("scroll", setHeaderState, { passive: true });
+if (header) {
+  setHeaderState();
+  window.addEventListener("scroll", setHeaderState, { passive: true });
+}
 
-navToggle.addEventListener("click", () => {
-  const isOpen = nav.classList.toggle("is-open");
-  navToggle.setAttribute("aria-expanded", String(isOpen));
-});
-
-nav.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("is-open");
-    navToggle.setAttribute("aria-expanded", "false");
+if (nav && navToggle) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
   });
-});
 
-const updateOpenStatus = () => {
-  openStatus.textContent = "Demo-Öffnungszeiten";
-  statusDot.classList.remove("closed");
-};
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
 
-updateOpenStatus();
+if (openStatus && statusDot) {
+  const updateOpenStatus = () => {
+    openStatus.textContent = "Demo-Öffnungszeiten";
+    statusDot.classList.remove("closed");
+  };
+
+  updateOpenStatus();
+}
 
 if (bookingForm) {
   const dateInput = bookingForm.querySelector('input[name="date"]');
