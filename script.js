@@ -29,7 +29,7 @@ if (nav && navToggle) {
 
 if (openStatus && statusDot) {
   const updateOpenStatus = () => {
-    openStatus.textContent = "Demo-Öffnungszeiten";
+    openStatus.textContent = "Beispiel-Öffnungszeiten";
     statusDot.classList.remove("closed");
   };
 
